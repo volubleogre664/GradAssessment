@@ -1,0 +1,70 @@
+﻿@model UserInput
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    var url = "https://localhost:7278/api/WeatherForecast/?city=" 
+        + Model.City 
+        + "&days=" 
+        + Model.Days;
+}
+
+<h1>Weather Forecast For @Model.City (@Model.Days days)</h1>
+<hr />
+
+@(
+Html.DevExtreme().DataGrid()
+    .ID("gridContainer")
+    .DataSource(d => d
+        .StaticJson()
+        .Url(url)
+    )
+    .RowAlternationEnabled(true)
+    .ShowBorders(true)
+    .Paging(p => p.PageSize(15))
+    .Pager(p => p
+        .ShowPageSizeSelector(true)
+        .AllowedPageSizes(new[] { 15, 26 })
+    )
+    .Grouping(g => g.AutoExpandAll(false))
+    .Columns(columns =>
+    {
+        columns.Add()
+            .DataField("date")
+            .Caption("Date")
+            .GroupIndex(0);
+
+        columns.Add()
+            .DataField("temperature")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("humidity")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("windSpeed")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("feelsLike")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("clouds")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("windDirection")
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("time")
+            .Alignment(HorizontalAlignment.Right);
+    })
+)

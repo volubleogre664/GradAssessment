@@ -1,70 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model UserInput
 
-<h1>Weather Forecast</h1>
-<hr />
 
-@(
-Html.DevExtreme().DataGrid()
-    .ID("gridContainer")
-    .DataSource(d => d
-        .StaticJson()
-        .Url("https://localhost:7278/api/WeatherForecast/?city=Durban&days=3")
-    )
-    .RemoteOperations(false)
-    .AllowColumnReordering(true)
-    .RowAlternationEnabled(true)
-    .ShowBorders(true)
-    .Paging(p => p.PageSize(10))
-    .Pager(p => p
-        .ShowPageSizeSelector(true)
-        .AllowedPageSizes(new[] { 10, 25, 50, 100 })
-    )
-    .SearchPanel(s => s
-        .Visible(true)
-        .HighlightCaseSensitive(true)
-    )
-    .GroupPanel(g => g.Visible(true))
-    .Grouping(g => g.AutoExpandAll(false))
-    .Columns(columns =>
-    {
-        columns.Add()
-            .DataField("date")
-            .Caption("Date")
-            .GroupIndex(0);
+<h1>Enter City To Get Forecast</h1>
 
-        columns.Add()
-            .DataField("temperature")
-            .DataType(GridColumnDataType.Number)
-            .Alignment(HorizontalAlignment.Right);
+<form method="get" asp-action="Forecast" asp-controller="Home">
+    <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" asp-for="City" class="form-control" required id="city" aria-describedby="cityHelp" placeholder="Enter city">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <span asp-validation-for="City"></span>
+    </div>
 
-        columns.Add()
-            .DataField("humidity")
-            .DataType(GridColumnDataType.Number)
-            .Alignment(HorizontalAlignment.Right);
+    <div class="form-group">
+        <label for="days">Days</label>
+        <input type="number" asp-for="Days" required class="form-control" id="days">
+        <span asp-validation-for="Days"></span>
+    </div>
 
-        columns.Add()
-            .DataField("windSpeed")
-            .DataType(GridColumnDataType.Number)
-            .Alignment(HorizontalAlignment.Right);
-
-        columns.Add()
-            .DataField("feelsLike")
-            .DataType(GridColumnDataType.Number)
-            .Alignment(HorizontalAlignment.Right);
-
-        columns.Add()
-            .DataField("clouds")
-            .DataType(GridColumnDataType.Number)
-            .Alignment(HorizontalAlignment.Right);
-
-        columns.Add()
-            .DataField("windDirection")
-            .Alignment(HorizontalAlignment.Right);
-
-        columns.Add()
-            .DataField("time")
-            .Alignment(HorizontalAlignment.Right);
-    })
-)
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
