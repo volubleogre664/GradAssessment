@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "srfe7XiIw07Vlwc2dilGcLZE6bHStJpzlQm+PK18KaxkRgr7Wyes4LWuTygAj1PmyOblqmFn80WbCw08AT5xxw==",
+  "dgSpecHash": "3HoLA8JMe7OYH0y2tO52DMHLDBVUfRMqohRQQjjzNZnKMCutOlZoV/uuMWqbVDrjt591y4F3Nm8LiaBlDaReJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\nduduzos\\OneDrive - PaySpace\\Desktop\\DevProjects\\assessment\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,6 @@
     "C:\\Users\\nduduzos\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\nduduzos\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\nduduzos\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\nduduzos\\.nuget\\packages\\openweatherapi\\1.0.2\\openweatherapi.1.0.2.nupkg.sha512",
     "C:\\Users\\nduduzos\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []

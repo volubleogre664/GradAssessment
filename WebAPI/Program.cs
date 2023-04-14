@@ -1,5 +1,9 @@
 namespace WebAPI
 {
+    using WebAPI.Extensions;
+    using WebAPI.Interfaces;
+    using WebAPI.Services;
+
     public class Program
     {
         public static void Main(string[] args)
@@ -7,6 +11,7 @@ namespace WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddWeatherService(builder.Configuration);
 
             builder.Services.AddControllers();
 
