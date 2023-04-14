@@ -2,6 +2,7 @@ namespace WebAPI.Controllers
 {
     using FluentValidation;
     using FluentValidation.AspNetCore;
+
     using Microsoft.AspNetCore.Mvc;
 
     using Newtonsoft.Json;
@@ -42,7 +43,27 @@ namespace WebAPI.Controllers
 
             var weatherForecast = JsonConvert.DeserializeObject<WeatherForecast>(res);
 
-            return Ok(weatherForecast);
+            List<object> forecasts = new();
+
+            weatherForecast.Forecast.Days.ForEach(_ =>
+            {
+                _.HourForecast.ForEach(HourForecast =>
+                {
+                    forecasts.Add(new
+                    {
+                        Date = _.Date.ToLongDateString(),
+                        Time = HourForecast.Time.ToShortTimeString(),
+                        HourForecast.Clouds,
+                        HourForecast.FeelsLike,
+                        HourForecast.Temperature,
+                        HourForecast.Humidity,
+                        HourForecast.WindDirection,
+                        HourForecast.WindSpeed,
+                    });
+                });
+            });
+
+            return Ok(forecasts);
         }
     }
 }

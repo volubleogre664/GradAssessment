@@ -5,6 +5,13 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{5E30F27A-D65B-4989-8154-692A56675AAB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "WebClient\WebClient.csproj", "{22198D64-FF87-4F6E-9588-11756D8257BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{D5179010-9EFF-4F65-A5D5-E786CC65021E}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{5E30F27A-D65B-4989-8154-692A56675AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E30F27A-D65B-4989-8154-692A56675AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E30F27A-D65B-4989-8154-692A56675AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22198D64-FF87-4F6E-9588-11756D8257BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22198D64-FF87-4F6E-9588-11756D8257BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22198D64-FF87-4F6E-9588-11756D8257BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22198D64-FF87-4F6E-9588-11756D8257BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

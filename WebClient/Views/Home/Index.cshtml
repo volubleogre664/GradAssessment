@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Weather Forecast</h1>
+<hr />
+
+@(
+Html.DevExtreme().DataGrid()
+    .ID("gridContainer")
+    .DataSource(d => d
+        .StaticJson()
+        .Url("https://localhost:7278/api/WeatherForecast/?city=Durban&days=3")
+    )
+    .RemoteOperations(false)
+    .AllowColumnReordering(true)
+    .RowAlternationEnabled(true)
+    .ShowBorders(true)
+    .Paging(p => p.PageSize(10))
+    .Pager(p => p
+        .ShowPageSizeSelector(true)
+        .AllowedPageSizes(new[] { 10, 25, 50, 100 })
+    )
+    .SearchPanel(s => s
+        .Visible(true)
+        .HighlightCaseSensitive(true)
+    )
+    .GroupPanel(g => g.Visible(true))
+    .Grouping(g => g.AutoExpandAll(false))
+    .Columns(columns =>
+    {
+        columns.Add()
+            .DataField("date")
+            .Caption("Date")
+            .GroupIndex(0);
+
+        columns.Add()
+            .DataField("temperature")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("humidity")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("windSpeed")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("feelsLike")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("clouds")
+            .DataType(GridColumnDataType.Number)
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("windDirection")
+            .Alignment(HorizontalAlignment.Right);
+
+        columns.Add()
+            .DataField("time")
+            .Alignment(HorizontalAlignment.Right);
+    })
+)

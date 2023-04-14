@@ -26,6 +26,13 @@ namespace WebAPI
 
             // Configure the HTTP request pipeline.
 
+            app.UseCors(_ =>
+            {
+                _.AllowAnyHeader();
+                _.AllowAnyMethod();
+                _.AllowAnyOrigin();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
