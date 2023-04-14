@@ -1,8 +1,8 @@
-﻿using WebAPI.Interfaces;
-using WebAPI.Services;
-
-namespace WebAPI.Extensions
+﻿namespace WebAPI.Extensions
 {
+    using WebAPI.Interfaces;
+    using WebAPI.Services;
+
     public static class WeatherServiceIServiceCollectionExtensions
     {
         public static IServiceCollection AddWeatherService(this IServiceCollection services, ConfigurationManager configuration)
@@ -10,8 +10,10 @@ namespace WebAPI.Extensions
             var host = configuration.GetConnectionString("WeatherAPIHost");
             var key = configuration.GetConnectionString("WeatherAPIKey");
 
-            IWeatherService weatherService = new WeatherService(host, key);
+            var serviceProvider = services.BuildServiceProvider();
+            var cache = serviceProvider.GetRequiredService<ICacheService>();
 
+            IWeatherService weatherService = new WeatherService(host, key, cache);
             services.AddSingleton(weatherService);
 
             return services;

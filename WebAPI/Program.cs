@@ -1,8 +1,12 @@
 namespace WebAPI
 {
+    using FluentValidation;
+
     using WebAPI.Extensions;
     using WebAPI.Interfaces;
+    using WebAPI.Models;
     using WebAPI.Services;
+    using WebAPI.Validators;
 
     public class Program
     {
@@ -11,7 +15,10 @@ namespace WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddMemoryCache();
+            builder.Services.AddScoped<ICacheService, CacheService>();
             builder.Services.AddWeatherService(builder.Configuration);
+            builder.Services.AddScoped<IValidator<Input>, WeatherValidator>();
 
             builder.Services.AddControllers();
 

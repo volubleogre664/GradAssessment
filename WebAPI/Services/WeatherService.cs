@@ -1,26 +1,38 @@
 ﻿namespace WebAPI.Services
 {
     using WebAPI.Interfaces;
+    using WebAPI.Models;
 
     public class WeatherService : IWeatherService
     {
         private readonly string host;
         private readonly string key;
         private readonly HttpClient httpClient;
+        private readonly ICacheService cacheService;
 
-        public WeatherService(string host, string key)
+        public WeatherService(string host, string key, ICacheService cacheService)
         {
             this.host = host;
             this.key = key;
             this.httpClient = new HttpClient();
+            this.cacheService = cacheService;
         }
 
-        public async Task<string> GetWeatherForecastAsync(string city, int days)
+        public async Task<string> GetWeatherForecastAsync(Input model)
         {
-            var request = this.GenerateRequestMessage(city, days);
+            var responseBody = this.cacheService.GetItem(model.City);
+
+            if (responseBody != null)
+            {
+                return responseBody;
+            }
+
+            var request = this.GenerateRequestMessage(model.City, model.Days);
 
             var response = await this.httpClient.SendAsync(request);
-            var responseBody = await response.Content.ReadAsStringAsync();
+            responseBody = await response.Content.ReadAsStringAsync();
+
+            this.cacheService.SetItem(model.City, responseBody);
 
             return responseBody;
         }

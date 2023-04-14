@@ -1,7 +1,9 @@
-﻿namespace WebAPI.Interfaces
+﻿using WebAPI.Models;
+
+namespace WebAPI.Interfaces
 {
     public interface IWeatherService
     {
-        Task<string> GetWeatherForecastAsync(string city, int days);
+        Task<string> GetWeatherForecastAsync(Input model);
     }
 }
